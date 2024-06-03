@@ -60,6 +60,9 @@
                 return;
             }
 
+            // Display the data in an alert
+            alert(`Name: ${fullName}\nEmail: ${email}\nDate Of Birth: ${dob}\nAbout: ${about}\nAchievements: ${achievements}\nGrade: ${grade}\nReceive Notifications: ${receiveNotifications.value}`);
+
             // Store form data in session storage
             sessionStorage.setItem('fullName', fullName);
             sessionStorage.setItem('email', email);
