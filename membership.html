@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Club Membership Form</title>
+    <link rel="stylesheet" href="waitlist.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get form values
+            const fullName = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const about = document.getElementById('about').value.trim();
+            const achievements = document.getElementById('achievements').value.trim();
+            const grade = document.getElementById('grade').value;
+            const receiveNotifications = document.querySelector('input[name="notifications"]:checked');
+
+            // Validate form values
+            if (!fullName) {
+                alert('Name is required');
+                return;
+            }
+
+            if (!email) {
+                alert('Email is required');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!dob) {
+                alert('Date of Birth is required');
+                return;
+            }
+
+            if (!about) {
+                alert('Tell us about yourself is required');
+                return;
+            }
+
+            if (!achievements) {
+                alert('Achievements description is required');
+                return;
+            }
+
+            if (!grade) {
+                alert('Grade is required');
+                return;
+            }
+
+            if (!receiveNotifications) {
+                alert('Please select if you would like to receive notifications');
+                return;
+            }
+
+            // Store form data in session storage
+            sessionStorage.setItem('fullName', fullName);
+            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('dob', dob);
+            sessionStorage.setItem('about', about);
+            sessionStorage.setItem('achievements', achievements);
+            sessionStorage.setItem('grade', grade);
+            sessionStorage.setItem('receiveNotifications', receiveNotifications.value);
+
+            // Redirect to confirmation page
+            window.location.href = 'confirm.html';
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="images/Logo.png" alt="Tech Club Logo">
+        </div>
+        <nav class="navbar">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='contactlist.html'">Contact</button>
+            <button onclick="location.href='waitlist.html'">Waitlist</button>
+            <button onclick="location.href='membership.html'">Join Us</button>
+        </nav>
+    </header>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Join Our Tech Club</h1>
+        </div>
+        <form id="membership-form" onsubmit="handleSubmit(event)">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+            <label for="dob">Date of Birth *</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="about">Tell us about yourself? *</label>
+            <textarea id="about" name="about" placeholder="Tell us about yourself" required></textarea>
+
+            <label for="achievements">Achievements? If yes, please describe them. *</label>
+            <textarea id="achievements" name="achievements" placeholder="Describe your achievements" required></textarea>
+
+            <label for="grade">Grade *</label>
+            <select id="grade" name="grade" required>
+                <option value="">Select your grade</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+
+            <label>Would you like to receive notifications? *</label>
+            <div class="radio-group">
+                <input type="radio" id="yes" name="notifications" value="Yes" required>
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="notifications" value="No">
+                <label for="no">No</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

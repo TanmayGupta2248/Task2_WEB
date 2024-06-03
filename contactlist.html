@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contactstyle.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validate form values
+            if (!name) {
+                alert('Name is required');
+                return;
+            }
+
+            if (!email) {
+                alert('Email is required');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!phone) {
+                alert('Phone number is required');
+                return;
+            }
+
+            const phonePattern = /^\+?[1-9]\d{1,14}$/; // Simplified international phone number pattern
+            if (!phonePattern.test(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+
+            if (!message) {
+                alert('Message is required');
+                return;
+            }
+
+            // Display the data in an alert
+            alert(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`);
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="images/Logo.png" alt="Company Logo">
+        </div>
+        <nav class="navbar">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='contactlist.html'">Contact</button>
+            <button onclick="location.href='waitlist.html'">Waitlist</button>
+            <button onclick="location.href='membership.html'">Join Us</button>
+        </nav>
+    </header>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Contact Us</h1>
+        </div>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+            <label for="phone">Phone *</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

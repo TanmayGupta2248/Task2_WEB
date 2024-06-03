@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waitlist</title>
+    <link rel="stylesheet" href="waitlist.css">
+    <script>
+        function handleWaitlistSubmit(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('waitlist-email').value.trim();
+            const receiveNotifications = document.querySelector('input[name="notifications"]:checked');
+
+            if (!email) {
+                alert('Email is required');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!receiveNotifications) {
+                alert('Please select if you would like to receive notifications');
+                return;
+            }
+
+            alert(`Email: ${email}\nReceive Notifications: ${receiveNotifications.value}`);
+        }
+    </script>
+</head>
+<body>
+    <header class="header"> 
+        <div class="logo">
+            <img src="images/Logo.png" alt="Tech Club Logo">
+        </div>
+        <nav class="navbar">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='contactlist.html'">Contact</button>
+            <button onclick="location.href='waitlist.html'">Waitlist</button>
+            <button onclick="location.href='membership.html'">Join Us</button>
+        </nav>
+    </header>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Join the Waitlist</h1>
+        </div>
+        <form onsubmit="handleWaitlistSubmit(event)">
+            <label for="waitlist-email">Email *</label>
+            <input type="email" id="waitlist-email" name="email" placeholder="Your email address" required>
+
+            <label>Would you like to receive notifications? *</label>
+            <div class="radio-group">
+                <input type="radio" id="yes" name="notifications" value="Yes" required>
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="notifications" value="No">
+                <label for="no">No</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
